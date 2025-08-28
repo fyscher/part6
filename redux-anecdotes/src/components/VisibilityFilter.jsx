@@ -8,13 +8,7 @@ const VisibilityFilter = () =>
     {
         dispatch(filterChange(e.target.value))
     }
-    return(
-        <input
-            name="filter"
-            onChange={handleChange}
-            placeholder="Match any phrase..."
-        />
-    )
+    return( <input name="filter" onChange={handleChange} placeholder="Match any phrase..." /> )
 }
 
 export default VisibilityFilter;
