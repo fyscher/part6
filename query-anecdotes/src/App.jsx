@@ -13,15 +13,15 @@ const App = () => {
   const handleVote = (anecdote, type) =>
   {
     updateAnecdoteMutation.mutate({ ...anecdote, votes: anecdote.votes + 1 })
-    dispatch({ type: 'VOTE', content: `Success! Voted for ${anecdote.content}` })
-    setTimeout(() => {dispatch({ type: "CLEAR" })}, 5000)
   }
 
   const updateAnecdoteMutation = useMutation({
     mutationFn: updateAnecdote,
-    onSuccess: () =>
+    onSuccess: (newObject) =>
     {
       queryClient.invalidateQueries({ queryKey: ['anecdotes'] })
+      dispatch({ type: 'VOTE', content: `Success! Voted for ${newObject.content}` })
+      setTimeout(() => {dispatch({ type: "CLEAR" })}, 5000)
     }
   })
 

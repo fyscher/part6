@@ -15,13 +15,12 @@ const AnecdoteForm = () => {
     {
       const anecdotes = queryClient.getQueryData(['anecdotes'])
       queryClient.setQueryData(['anecdotes'], anecdotes.concat(newAnecdote))
-      dispatch({ type: 'CREATE', content: `Success! Created: ${content}`})
+      dispatch({ type: 'CREATE', content: `Success! Created: ${newAnecdote.content}`})
       setTimeout(() => {dispatch({ type: "CLEAR" })}, 5000)
     },
     onError: error =>
     {
-      console.log('error: ', error)
-      dispatch({ type: 'ERROR', content: `Error! Could not create: ${error.status}: ${error.message}. Must meet 5 character minimum`}) //why does this submit when character min is met?
+      dispatch({ type: 'ERROR', content: `Error! Could not create: ${error.status}: ${error.message}. Must meet 5 character minimum`}) 
       setTimeout(() => {dispatch({ type: "CLEAR" })}, 5000)
     }
   })
